@@ -1,0 +1,13 @@
+!SESSION 2013-04-07 11:44:04.543 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.7.0_07
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=es_PE
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86 -product org.eclipse.epp.package.java.product
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2013-04-07 11:44:36.974
+!MESSAGE An Android SDK is already being loaded. Please try again later.
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-07 12:15:51.669
+!MESSAGE Failed to load properties file for project 'ProyectoAndroid'
