@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<phones>
+		<smartphone>
+					<Manufacturer>Everyday Italian</Manufacturer>
+					<brand>Everyday Italian</marca>
+					<model>Giada De Laurentiis</modelo>
+					<year>2005</year>
+					<os>2005</os>
+					<version>2005</version>
+					<memory>30.00</memory>
+					<processor>30.00</processor>
+					<weight>30.00</weight>
+		 </smartphone>
+		 <smartphone>
+					<Manufacturer>Everyday Italian</Manufacturer>
+					<brand>Everyday Italian</marca>
+					<model>Giada De Laurentiis</modelo>
+					<year>2005</year>
+					<os>2005</os>
+					<version>2005</version>
+					<memory>30.00</memory>
+					<processor>30.00</processor>
+				<weight>30.00</weight>
+		 </smartphone>
+		 <smartphone>
+					<Manufacturer>Everyday Italian</Manufacturer>
+					<brand>Everyday Italian</marca>
+					<model>Giada De Laurentiis</modelo>
+					<year>2005</year>
+					<os>2005</os>
+					<version>2005</version>
+					<memory>30.00</memory>
+					<processor>30.00</processor>
+					<weight>30.00</weight>
+		 </smartphone>
+		 <smartphone>
+					<Manufacturer>Everyday Italian</Manufacturer>
+					<brand>Everyday Italian</marca>
+					<model>Giada De Laurentiis</modelo>
+					<year>2005</year>
+					<os>2005</os>
+					<version>2005</version>
+					<memory>30.00</memory>
+					<processor>30.00</processor>
+					<weight>30.00</weight>
+		 </smartphone>
+</phones>
