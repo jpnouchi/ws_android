@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<phones>
+		<smartphone>
+					<Manufacturer>HTC</Manufacturer>
+					<brand>Google/HTC</marca>
+					<model>Nexus One</modelo>
+					<release>January 2010</release>
+					<os version ="2.1 Eclair">Android</os>
+					<processor>1 GHz Qualcomm Scorpion</processor>
+					<memory>512 MB</memory>
+					<storage>512 MB</storage>
+					<weight>130 g</weight>
+		 </smartphone>
+		 <smartphone>
+					<Manufacturer>Samsung</Manufacturer>
+					<brand>Google/Samsung</marca>
+					<model>Nexus S I9023</modelo>
+					<release>December 2010</release>
+					<os version ="2.3 Gingerbread">Android</os>
+					<processor>1 GHz single-core ARM Cortex-A8</processor>
+					<memory>512 MB</memory>
+					<storage>16 GB</storage>
+					<weight>129 g</weight>
+		 </smartphone>
+		 <smartphone>
+					<Manufacturer>Samsung</Manufacturer>
+					<brand>Google/Samsung</marca>
+					<model>Galaxy Nexus I9250</modelo>
+					<release>November 2011</release>
+					<os version ="4.0 Ice Cream Sandwich">Android</os>
+					<processor>1.2 GHz dual-core ARM Cortex-A9</processor>
+					<memory>1 GB</memory>
+					<storage>16 GB</storage>
+					<weight>135 g</weight>
+		 </smartphone>
+		 <smartphone>
+					<Manufacturer>LG</Manufacturer>
+					<brand>Google/LG</marca>
+					<model>Nexus 4 E960</modelo>
+					<release>November 2012</release>
+					<os version ="4.2 Jelly Bean">Android</os>
+					<processor>1.5 GHz quad-core Qualcomm Krait</processor>
+					<memory>2 GB</memory>
+					<storage>16 GB</storage>
+					<weight>139 g</weight>
+		 </smartphone>
+</phones>
