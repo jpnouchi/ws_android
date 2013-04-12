@@ -27,7 +27,6 @@ public class ParserManager {
 	}
 	
 	public  XmlPullParser getXmlPullParser(){
-		
 		return (parserXmlPull==null  ? instanceParserXmlPull():this.parserXmlPull);
 	}
 
