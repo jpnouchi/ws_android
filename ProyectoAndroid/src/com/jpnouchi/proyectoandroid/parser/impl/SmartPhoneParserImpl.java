@@ -9,6 +9,9 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import android.text.TextUtils;
+import android.util.Log;
+
 import com.jpnouchi.proyectoandroid.model.SmartPhone;
 import com.jpnouchi.proyectoandroid.parser.ParserManager;
 import com.jpnouchi.proyectoandroid.parser.SmartPhoneParser;
@@ -19,6 +22,7 @@ public class SmartPhoneParserImpl implements SmartPhoneParser {
 
 	private URL url;
 	private XmlPullParser parser;
+	private final String tag = "SmartPhoneParser";
 
 
 	public SmartPhoneParserImpl(String stringUrl) {
@@ -37,14 +41,9 @@ public class SmartPhoneParserImpl implements SmartPhoneParser {
 	
 	}
 	
-	public SmartPhoneParserImpl(String stringUrl, XmlPullParser xmlPullParser) {
+	public SmartPhoneParserImpl(XmlPullParser xmlPullParser) {
 		// TODO Auto-generated constructor stub
-		try{
-			this.url = new URL(stringUrl);
 			this.parser=xmlPullParser;
-		}catch (MalformedURLException e){
-			throw new RuntimeException(e);
-		}
 	}
 	
 	@Override
@@ -84,8 +83,31 @@ public class SmartPhoneParserImpl implements SmartPhoneParser {
 						}else if (etiqueta.equals(Constantes.TAG_RELEASE)){
 							smartPhone.setRelease(parser.nextText());
 						}else if (etiqueta.equals(Constantes.TAG_OS)){
+					        
+							int size =parser.getAttributeCount();
+							Log.d(tag, "number of attributes "+size);
+							if(size>0){
+								for(int x=0;x<size;x++){
+									Log.d(tag,"\t["+parser.getAttributeName(x)+"]=" +
+						                    "["+parser.getAttributeValue(x)+"]");
+									if(parser.getAttributeName(x).equals(Constantes.TAG_VERSION)){
+										smartPhone.setOsVersion(parser.getAttributeValue(x));
+									}
+								}
+							}else{
+								Log.d(tag, "no attributes ");
+							}
 							smartPhone.setOs(parser.nextText());
-						}
+							
+						}else if (etiqueta.equals(Constantes.TAG_PROCESSOR)){
+							smartPhone.setProcessor(parser.nextText());
+						}else if (etiqueta.equals(Constantes.TAG_MEMORY)){
+							smartPhone.setMemory(parser.nextText());
+						}else if (etiqueta.equals(Constantes.TAG_STORAGE)){
+							smartPhone.setStorage(parser.nextText());
+						}else if (etiqueta.equals(Constantes.TAG_WEIGHT)){
+							smartPhone.setWeight(parser.nextText());
+						}						
 						
 						}
 					}
@@ -103,7 +125,7 @@ public class SmartPhoneParserImpl implements SmartPhoneParser {
 	
 				}
 				evento = parser.next();
-				}
+			}
 
 			
 		} catch (XmlPullParserException e) {

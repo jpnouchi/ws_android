@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <phones>
 		<smartphone>
-					<Manufacturer>HTC</Manufacturer>
+					<manufacturer>HTC</manufacturer>
 					<brand>Google/HTC</brand>
 					<model>Nexus One</model>
 					<release>January 2010</release>
@@ -12,7 +12,7 @@
 					<weight>130 g</weight>
 		 </smartphone>
 		 <smartphone>
-					<Manufacturer>Samsung</Manufacturer>
+					<manufacturer>Samsung</manufacturer>
 					<brand>Google/Samsung</brand>
 					<model>Nexus S I9023</model>
 					<release>December 2010</release>
@@ -23,7 +23,7 @@
 					<weight>129 g</weight>
 		 </smartphone>
 		 <smartphone>
-					<Manufacturer>Samsung</Manufacturer>
+					<manufacturer>Samsung</manufacturer>
 					<brand>Google/Samsung</brand>
 					<model>Galaxy Nexus I9250</model>
 					<release>November 2011</release>
@@ -34,7 +34,7 @@
 					<weight>135 g</weight>
 		 </smartphone>
 		 <smartphone>
-					<Manufacturer>LG</Manufacturer>
+					<manufacturer>LG</manufacturer>
 					<brand>Google/LG</brand>
 					<model>Nexus 4 E960</model>
 					<release>November 2012</release>

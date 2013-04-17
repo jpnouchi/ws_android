@@ -1,11 +1,58 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/textView_leerXml"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:text="@string/textView_leerXml"
+        />
+
+ 
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         >
+
+	    <Button
+	        android:id="@+id/btn_xmlInternet"
+	        android:layout_width="150dp"
+	        android:layout_height="wrap_content"
+	        android:onClick="onClickLeerXmlInternet"
+	        android:text="@string/btn_xmlInternet" />
+
+		<Button
+	    android:id="@+id/btn_XmlLocal"
+	    android:layout_width="150dp" 
+	    android:layout_height="wrap_content"
+	    android:text="@string/btn_xmlLocal"
+	    android:onClick="onClickLeerXmlLocal" />   
+        
+    </LinearLayout>
+  
+    <TextView
+    android:id="@+id/textView_listarSmartphones"
+    android:layout_width="fill_parent"
+    android:layout_height="30dp"
+    android:text="@string/textView_listarSmartphones"
+    />
+    
+    <TextView
+    android:id="@+id/textView_smartphonesResult"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
+    android:text="" />
+
+</LinearLayout>

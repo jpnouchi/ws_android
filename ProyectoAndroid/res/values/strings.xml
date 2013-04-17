@@ -4,5 +4,13 @@
     <string name="app_name">ProyectoAndroid</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-
+    
+    <!-- activity_main -->
+ 	<string name="btn_xmlLocal">Local </string>
+    <string name="btn_xmlInternet">Internet</string>
+    <string name="textView_leerXml">Leer XML desde </string>
+    <string name="textView_listarSmartphones">Listado de Smartphones </string>
+    <string name="asd">Leer XML desde </string>
+    <!---->
+    
 </resources>
