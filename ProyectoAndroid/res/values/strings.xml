@@ -10,7 +10,7 @@
     <string name="btn_xmlInternet">Internet</string>
     <string name="textView_leerXml">Leer XML desde </string>
     <string name="textView_listarSmartphones">Listado de Smartphones </string>
-    <string name="asd">Leer XML desde </string>
+    <string name="asd">Leer XML desde </string><string name="btn_grabar">Grabar</string>
     <!---->
     
 </resources>
