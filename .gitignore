@@ -20,6 +20,5 @@ local.properties
 .project
 
 # Idea project files
-.iml
-.project
+*.iml
 .idea/
