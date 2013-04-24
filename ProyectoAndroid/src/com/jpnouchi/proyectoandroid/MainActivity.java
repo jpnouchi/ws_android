@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 import com.jpnouchi.proyectoandroid.utilitario.Constantes;
+import static com.jpnouchi.proyectoandroid.utilitario.Constantes.CONTENT_URI;
 
 public class MainActivity extends Activity {
 
@@ -71,15 +72,18 @@ public class MainActivity extends Activity {
 
 
     public void onclickGrabarContentProvider(View v){
-        int main = Log.d("main", "onclickGrabarContentProvider " + listSmartPhone);
+        Log.d("main", "onclickGrabarContentProvider " + listSmartPhone);
 
         ContentValues values;
-        for(SmartPhone smartPhone:listSmartPhone){
-            values=phone2ContentValues(smartPhone);
-            Uri uri = getContentResolver().insert(Uri.parse(Constantes.PROVIDER_NAME),values);
-            Toast.makeText(getBaseContext(), uri.toString(),Toast.LENGTH_LONG).show();
+        try {
+             for(SmartPhone smartPhone:listSmartPhone){
+                values=phone2ContentValues(smartPhone);
+                Uri uri = getContentResolver().insert(CONTENT_URI,values);
+                Toast.makeText(getBaseContext(), uri.toString(),Toast.LENGTH_LONG).show();
+            }
+        }catch(Exception e){
+            Log.d("main", "Exception onclickGrabarContentProvider " + e.getMessage());
         }
-
     }
 
     private ContentValues phone2ContentValues(SmartPhone beanSmartPhone){

@@ -9,11 +9,11 @@ public class Phone {
 	public static final int DATABASE_VERSION = 1;
 	public static final String QUERY_CREATE_T_SMARTPHONE =
 		"create table " + TABLE_SMARTPHONE +
-		" (_id integer primary key autoincrement, "+
-		 "manufacturer text not null, brand text not null"+
-		 "model text not null, release text not null"+
-		 "os text not null, osVersion text not null"+
-		 "processor text , memory text "+
+		" ( _id integer primary key autoincrement, "+
+		" manufacturer text not null, brand text not null,"+
+		" model text not null, release text not null,"+
+		" os text not null, osVersion text not null,"+
+		" processor text , memory text ,"+
 	    "storage text , weight text );";
 	
 	public static final String QUERY_DROP_T_SMARTPHONE="DROP TABLE "+TABLE_SMARTPHONE;

@@ -22,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--DECLARACION DE LOS CONTENT PROVIDER -->
+     <provider android:name="com.jpnouchi.contentproviderproyecto.contentprovider.PhoneProvider" android:authorities="com.jpnouchi.provider.Phones"/>
+
     </application>
 
 </manifest>
