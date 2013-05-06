@@ -1,12 +1,11 @@
 package com.jpnouchi.proyectoandroid;
 
-import java.lang.annotation.ElementType;
 import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
-import android.widget.Toast;
+import android.widget.Button;
 import com.jpnouchi.proyectoandroid.model.SmartPhone;
 import com.jpnouchi.proyectoandroid.parser.SmartPhoneParser;
 import com.jpnouchi.proyectoandroid.parser.impl.SmartPhoneParserImpl;
@@ -19,17 +18,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
-import com.jpnouchi.proyectoandroid.utilitario.Constantes;
 import com.jpnouchi.proyectoandroid.utilitario.Util;
 
 import static com.jpnouchi.proyectoandroid.utilitario.Constantes.CONTENT_URI;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
 
 	private TextView txtviewSmartphonesResult;
 	private XmlResourceParser rscParser;
 	private SmartPhoneParser smartPhoneParserImpl;
     private   List <SmartPhone> listSmartPhone;
+    private Button btnGrabar;
+    private Button btnXmlLocal;
+    private Button btnXmlInternet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +41,17 @@ public class MainActivity extends Activity {
 		    StrictMode.setThreadPolicy(policy);
 		}
         txtviewSmartphonesResult=(TextView)findViewById(R.id.textView_smartphonesResult);
-        
-        
+        btnGrabar= (Button) findViewById(R.id.btn_grabar);
+        btnGrabar.setOnClickListener(this);
+        btnXmlLocal= (Button) findViewById(R.id.btn_XmlLocal);
+        btnXmlLocal.setOnClickListener(this);
+        btnXmlInternet= (Button) findViewById(R.id.btn_xmlInternet);
+        btnXmlInternet.setOnClickListener(this);
+
+        btnGrabar.setVisibility(View.INVISIBLE);
+
+
+
     }
 
 
@@ -73,7 +83,9 @@ public class MainActivity extends Activity {
 				text.append("\n");
 			}
 			txtviewSmartphonesResult.setText(text.toString());
-		}
+            btnGrabar.setVisibility(View.VISIBLE);
+
+        }
 
 	}
 
@@ -96,6 +108,22 @@ public class MainActivity extends Activity {
     }
 
 
-    
-    
+    @Override
+    public void onClick(View v) {
+        //To change body of implemented methods use File | Settings | File Templates.
+
+        switch (v.getId()) {
+            case R.id.btn_XmlLocal:
+                onClickLeerXmlLocal(v);
+                break;
+            case R.id.btn_xmlInternet:
+                onClickLeerXmlInternet(v);
+                break;
+            case R.id.btn_grabar:
+                onclickGrabarContentProvider(v);
+                break;
+            default:
+                break;
+        }
+    }
 }

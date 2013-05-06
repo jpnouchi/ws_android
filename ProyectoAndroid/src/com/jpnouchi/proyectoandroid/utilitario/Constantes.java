@@ -6,7 +6,7 @@ public class Constantes {
 
 	
 	public static final String FORMAT_DATE_REST ="yyyy-MM-dd hh:mm:ss";
-	public static final String FORMAT_DATE ="dd/MM/YYYY";
+	public static final String FORMAT_DATE ="dd/MM/yyyy";
 
 	public static final String FAIL ="FAIL";
 	public static final String SMARTPHONE_INIT ="smartphone";

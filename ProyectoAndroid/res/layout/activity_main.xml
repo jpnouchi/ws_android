@@ -15,7 +15,7 @@
         android:layout_width="fill_parent"
         android:layout_height="30dp"
         android:text="@string/textView_leerXml"
-        />
+        android:textSize="20dp"/>
 
  
     
@@ -29,15 +29,15 @@
 	        android:id="@+id/btn_xmlInternet"
 	        android:layout_width="150dp"
 	        android:layout_height="wrap_content"
-	        android:onClick="onClickLeerXmlInternet"
-	        android:text="@string/btn_xmlInternet" />
+	        android:text="@string/btn_xmlInternet"
+            android:textSize="15dp"/>
 
 		<Button
 	    android:id="@+id/btn_XmlLocal"
 	    android:layout_width="150dp" 
 	    android:layout_height="wrap_content"
 	    android:text="@string/btn_xmlLocal"
-	    android:onClick="onClickLeerXmlLocal" />   
+        android:textSize="15dp"/>
         
     </LinearLayout>
   
@@ -46,7 +46,8 @@
     android:layout_width="fill_parent"
     android:layout_height="30dp"
     android:text="@string/textView_listarSmartphones"
-    android:layout_marginTop="10dp"/>
+    android:layout_marginTop="10dp"
+    android:textSize="20dp"/>
     
     <TextView
     android:id="@+id/textView_smartphonesResult"
@@ -59,8 +60,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btn_grabar"
-            android:id="@+id/btn_grabar" android:layout_gravity="center"
-            android:onClick="onclickGrabarContentProvider"
-            android:layout_marginTop="10dp"/>
+            android:id="@+id/btn_grabar"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:visibility="invisible"
+            android:textSize="15dp"/>
 
 </LinearLayout>

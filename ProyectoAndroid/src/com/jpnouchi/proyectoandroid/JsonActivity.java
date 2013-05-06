@@ -1,6 +1,9 @@
 package com.jpnouchi.proyectoandroid;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -10,6 +13,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.annotation.TargetApi;
 import android.app.ListActivity;
@@ -20,6 +24,7 @@ import com.jpnouchi.proyectoandroid.parser.SmartPhoneParser;
 import com.jpnouchi.proyectoandroid.parser.impl.SmartPhoneParserImpl;
 import com.jpnouchi.proyectoandroid.utilitario.Constantes;
 import com.jpnouchi.proyectoandroid.utilitario.Util;
+import com.jpnouchi.proyectoandroid.utilitario.VibradorTelefono;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -119,7 +124,8 @@ public class JsonActivity extends ListActivity {
             	Log.d("json", smartPhone.toString());
             	mensaje="El Smartphone con ID "+pos+
             			"\n fue registrado por "+smartPhone.getUserCreate()+
-            			"\n con fecha registro "+smartPhone.getDateCreate();
+            			"\n con fecha registro "+Util.getDateFormat(smartPhone.getDateCreate());
+                comenzarAlarma(v);
             }else{
             	mensaje="El Smartphone con ID "+pos+
             			"\n no esta registrado en el sistema Web";
@@ -135,13 +141,18 @@ public class JsonActivity extends ListActivity {
             Util.message(this,"Error IO: "+e.getMessage());
         } catch (Exception e) {
         	Log.e("json", "Exception " + e.getMessage());
-             Util.message(this,"Error : "+e.getMessage());
+             Util.message(this, "Error : " + e.getMessage());
          }
     }
 
-    public void onclickEnviarRestFull(View v){
+    public void comenzarAlarma(View view) {
+        int i =3;
+        Intent intent = new Intent(this, VibradorTelefono.class);
+        PendingIntent pedIntent = PendingIntent.getBroadcast(this.getApplicationContext(), 123456, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (i * 1000), pedIntent);
+        Util.message(this, "La alarma se activara en " + i);
 
     }
-
 
     }

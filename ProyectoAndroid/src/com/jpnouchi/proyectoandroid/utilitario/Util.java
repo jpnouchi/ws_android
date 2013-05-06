@@ -64,7 +64,7 @@ public class Util {
             return Uri.parse("content://"+ Constantes.PROVIDER_NAME + "/phones"+"/"+_id);
     }
     
-    public String getDateFormat(String date) throws ParseException{
+    public static String getDateFormat(String date) throws ParseException{
     	return dateFormat.format(dateFormatRest.parse(date));
     }
     
