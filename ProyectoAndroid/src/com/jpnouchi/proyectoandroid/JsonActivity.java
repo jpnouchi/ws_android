@@ -151,7 +151,7 @@ public class JsonActivity extends ListActivity {
         PendingIntent pedIntent = PendingIntent.getBroadcast(this.getApplicationContext(), 123456, intent, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (i * 1000), pedIntent);
-        Util.message(this, "La alarma se activara en " + i);
+        Util.message(this, "La alarma se activara en " + i +" seg");
 
     }
 
