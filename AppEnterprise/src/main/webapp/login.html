@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login | Ingreso al Sistema</title>
+  <link rel="stylesheet" href="css/ui-lightness/ui-lightness.css" type="text/css" />
+  <link rel="stylesheet" href="css/layout.css" type="text/css" />
+
+  
+</head>
+<body id="login">
+	
+  <div id="content">
+	
+	<section class="ui-widget ui-corner-all">
+		<header class="ui-widget-header ui-corner-top">Login Enterprise</header>
+			<div class="ui-widget-content ui-corner-bottom">
+				<p>Ingrese su Usuario y Password</p>
+				<p class="ui-state-error">Usuario y/o Password Erroneo</p>
+				<form action="javascript:login();" id="form" method="post">
+					<div>
+						<label for="username">Username:</label> 
+						<input type="text" id="username" class="ui-state-hover ui-corner-all">
+					</div>
+					<div>
+						<label for="password">Password:</label> 
+						<input type="password" id="password" class="ui-state-hover ui-corner-all">
+					</div>
+					<div>
+						<button id="btnLogin" class="ui-widget">Login</button>
+  				</div>
+				</form>
+				
+			</div>
+			
+		</section>	
+	</div>
+  <div class="ui-widget-overlay" style="z-index: 1002;"></div>
+  <script type="text/javascript" src="js/lib/jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="js/lib/jquery-ui-1.8.12.min.js"></script>
+  <script type="text/javascript" src="js/login.js"></script>
+  
+</body>
+</html>
+  
