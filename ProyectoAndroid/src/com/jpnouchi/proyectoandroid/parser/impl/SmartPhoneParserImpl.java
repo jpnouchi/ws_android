@@ -1,11 +1,21 @@
 package com.jpnouchi.proyectoandroid.parser.impl;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreProtocolPNames;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -19,6 +29,7 @@ import com.jpnouchi.proyectoandroid.utilitario.Constantes;
 import com.jpnouchi.proyectoandroid.utilitario.Util;
 
 public class SmartPhoneParserImpl implements SmartPhoneParser {
+
 
 	private URL url;
 	private XmlPullParser parser;
@@ -42,102 +53,133 @@ public class SmartPhoneParserImpl implements SmartPhoneParser {
 	}
 	
 	public SmartPhoneParserImpl(XmlPullParser xmlPullParser) {
-		// TODO Auto-generated constructor stub
-			this.parser=xmlPullParser;
-	}
-	
+        // TODO Auto-generated constructor stub
+        this.parser=xmlPullParser;
+    }
+
+    public SmartPhoneParserImpl() {
+        // TODO Auto-generated constructor stub
+    }
+
 	@Override
 	public List<SmartPhone> parse() {
-		// TODO Auto-generated method stub
-		List<SmartPhone> listaSmartPhone = null;
-		try {
-			//XML PULL maneja eventos que son valores enteros 
-			int evento = parser.getEventType();
-			SmartPhone smartPhone = null;
-			
-			//Mientras que no termine el documento entra
-			while (evento != XmlPullParser.END_DOCUMENT){
-				String etiqueta = null;
-				//comenzaremos a recorrer las etiquetas
-				switch (evento) {
-				
-				case XmlPullParser.START_DOCUMENT:
-					listaSmartPhone = new ArrayList<SmartPhone>();
-					break;
-					
-				case XmlPullParser.START_TAG:
-					etiqueta = parser.getName();
+        // TODO Auto-generated method stub
+        List<SmartPhone> listaSmartPhone = null;
+        try {
+            //XML PULL maneja eventos que son valores enteros
+            int evento = parser.getEventType();
+            SmartPhone smartPhone = null;
 
-					if (etiqueta.equals(Constantes.SMARTPHONE_INIT)){
-						smartPhone = new SmartPhone();
-					}
-					else{ 
-						if (smartPhone != null){
-						//analizar las demas etiquetas
-						if (etiqueta.equals(Constantes.TAG_MANUFACTURER)){
-							smartPhone.setManufacturer(parser.nextText());
-						}else if (etiqueta.equals(Constantes.TAG_BRAND)){
-							smartPhone.setBrand(parser.nextText());
-						}else if (etiqueta.equals(Constantes.TAG_MODEL)){
-							smartPhone.setModel(parser.nextText());
-						}else if (etiqueta.equals(Constantes.TAG_RELEASE)){
-							smartPhone.setRelease(parser.nextText());
-						}else if (etiqueta.equals(Constantes.TAG_OS)){
-					        
-							int size =parser.getAttributeCount();
-							Log.d(tag, "number of attributes "+size);
-							if(size>0){
-								for(int x=0;x<size;x++){
-									Log.d(tag,"\t["+parser.getAttributeName(x)+"]=" +
-						                    "["+parser.getAttributeValue(x)+"]");
-									if(parser.getAttributeName(x).equals(Constantes.TAG_VERSION)){
-										smartPhone.setOsVersion(parser.getAttributeValue(x));
-									}
-								}
-							}else{
-								Log.d(tag, "no attributes ");
-							}
-							smartPhone.setOs(parser.nextText());
-							
-						}else if (etiqueta.equals(Constantes.TAG_PROCESSOR)){
-							smartPhone.setProcessor(parser.nextText());
-						}else if (etiqueta.equals(Constantes.TAG_MEMORY)){
-							smartPhone.setMemory(parser.nextText());
-						}else if (etiqueta.equals(Constantes.TAG_STORAGE)){
-							smartPhone.setStorage(parser.nextText());
-						}else if (etiqueta.equals(Constantes.TAG_WEIGHT)){
-							smartPhone.setWeight(parser.nextText());
-						}						
-						
-						}
-					}
+            //Mientras que no termine el documento entra
+            while (evento != XmlPullParser.END_DOCUMENT){
+                String etiqueta = null;
+                //comenzaremos a recorrer las etiquetas
+                switch (evento) {
 
-					
-				break;
-				//FIN DE LAS ETIQUETAS
-				case XmlPullParser.END_TAG:
-					etiqueta = parser.getName();
-					//SIEMPRE Y CUANDO LA ETIQUETA DE CIERRE ES "ITEM" Y EL MODELO NOTICIA ES DIFERENTE DE NULL(ESTA LLENO)
-					if (etiqueta.equals(Constantes.SMARTPHONE_INIT) && smartPhone != null){
-						listaSmartPhone.add(smartPhone);
-					}
-				break;
-	
-				}
-				evento = parser.next();
-			}
+                    case XmlPullParser.START_DOCUMENT:
+                        listaSmartPhone = new ArrayList<SmartPhone>();
+                        break;
 
-			
-		} catch (XmlPullParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+                    case XmlPullParser.START_TAG:
+                        etiqueta = parser.getName();
+
+                        if (etiqueta.equals(Constantes.SMARTPHONE_INIT)){
+                            smartPhone = new SmartPhone();
+                        }
+                        else{
+                            if (smartPhone != null){
+                                //analizar las demas etiquetas
+                                if (etiqueta.equals(Constantes.TAG_MANUFACTURER)){
+                                    smartPhone.setManufacturer(parser.nextText());
+                                }else if (etiqueta.equals(Constantes.TAG_BRAND)){
+                                    smartPhone.setBrand(parser.nextText());
+                                }else if (etiqueta.equals(Constantes.TAG_MODEL)){
+                                    smartPhone.setModel(parser.nextText());
+                                }else if (etiqueta.equals(Constantes.TAG_RELEASE)){
+                                    smartPhone.setRelease(parser.nextText());
+                                }else if (etiqueta.equals(Constantes.TAG_OS)){
+
+                                    int size =parser.getAttributeCount();
+                                    Log.d(tag, "number of attributes "+size);
+                                    if(size>0){
+                                        for(int x=0;x<size;x++){
+                                            Log.d(tag,"\t["+parser.getAttributeName(x)+"]=" +
+                                                    "["+parser.getAttributeValue(x)+"]");
+                                            if(parser.getAttributeName(x).equals(Constantes.TAG_VERSION)){
+                                                smartPhone.setOsVersion(parser.getAttributeValue(x));
+                                            }
+                                        }
+                                    }else{
+                                        Log.d(tag, "no attributes ");
+                                    }
+                                    smartPhone.setOs(parser.nextText());
+
+                                }else if (etiqueta.equals(Constantes.TAG_PROCESSOR)){
+                                    smartPhone.setProcessor(parser.nextText());
+                                }else if (etiqueta.equals(Constantes.TAG_MEMORY)){
+                                    smartPhone.setMemory(parser.nextText());
+                                }else if (etiqueta.equals(Constantes.TAG_STORAGE)){
+                                    smartPhone.setStorage(parser.nextText());
+                                }else if (etiqueta.equals(Constantes.TAG_WEIGHT)){
+                                    smartPhone.setWeight(parser.nextText());
+                                }
+
+                            }
+                        }
+
+
+                        break;
+                    //FIN DE LAS ETIQUETAS
+                    case XmlPullParser.END_TAG:
+                        etiqueta = parser.getName();
+                        //SIEMPRE Y CUANDO LA ETIQUETA DE CIERRE ES "ITEM" Y EL MODELO NOTICIA ES DIFERENTE DE NULL(ESTA LLENO)
+                        if (etiqueta.equals(Constantes.SMARTPHONE_INIT) && smartPhone != null){
+                            listaSmartPhone.add(smartPhone);
+                        }
+                        break;
+
+                }
+                evento = parser.next();
+            }
+
+
+        } catch (XmlPullParserException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+        return listaSmartPhone;
+    }
+
+    @Override
+    public String getJsonData(String url) throws URISyntaxException,ClientProtocolException, IOException {
+    	BufferedReader in = null;
+	    HttpClient client = new DefaultHttpClient();
+	    client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, "android");
+	    HttpGet request = new HttpGet();
+	    request.setHeader("Content-Type", "text/plain; charset=utf-8");
+	    request.setURI(new URI(url));
+	    HttpResponse response = client.execute(request);
+	    in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+
+	    StringBuffer sb = new StringBuffer("");
+	    String line = "";
+
+	    String NL = System.getProperty("line.separator");
+	 
+	    while ((line = in.readLine()) != null){
+	    		if(line.equals(Constantes.FAIL))
+	    			break;
+	            sb.append(line + NL);
+	        }
+	    in.close();
+	    return sb.toString();
 		
-		
-		return listaSmartPhone;
-	}
+    }
+
 
 }

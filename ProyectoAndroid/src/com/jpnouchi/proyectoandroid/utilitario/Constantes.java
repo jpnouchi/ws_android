@@ -4,6 +4,11 @@ import android.net.Uri;
 
 public class Constantes {
 
+	
+	public static final String FORMAT_DATE_REST ="yyyy-MM-dd hh:mm:ss";
+	public static final String FORMAT_DATE ="dd/MM/YYYY";
+
+	public static final String FAIL ="FAIL";
 	public static final String SMARTPHONE_INIT ="smartphone";
 	public static final String TAG_MANUFACTURER ="manufacturer";
 	public static final String TAG_BRAND ="brand";
@@ -26,12 +31,14 @@ public class Constantes {
     public static final String COL_MEMORY ="memory";
     public static final String COL_STORAGE ="storage";
     public static final String COL_WEIGHT ="weight";
+    public static final String COL_ID = "_id";
 
 
     public static final int PHONES = 1;
     public static final int PHONE_ID = 2;
     public static final String PROVIDER_NAME ="com.jpnouchi.provider.Phones";
     public static final Uri CONTENT_URI =Uri.parse("content://"+ PROVIDER_NAME + "/phones");
+
 	
 	
 	

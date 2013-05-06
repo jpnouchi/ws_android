@@ -4,6 +4,7 @@ import java.lang.annotation.ElementType;
 import java.util.List;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.net.Uri;
 import android.widget.Toast;
 import com.jpnouchi.proyectoandroid.model.SmartPhone;
@@ -11,6 +12,7 @@ import com.jpnouchi.proyectoandroid.parser.SmartPhoneParser;
 import com.jpnouchi.proyectoandroid.parser.impl.SmartPhoneParserImpl;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.app.Activity;
 import android.content.res.XmlResourceParser;
 import android.util.Log;
@@ -18,6 +20,8 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 import com.jpnouchi.proyectoandroid.utilitario.Constantes;
+import com.jpnouchi.proyectoandroid.utilitario.Util;
+
 import static com.jpnouchi.proyectoandroid.utilitario.Constantes.CONTENT_URI;
 
 public class MainActivity extends Activity {
@@ -30,7 +34,11 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+		    StrictMode.ThreadPolicy policy =
+		    new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		    StrictMode.setThreadPolicy(policy);
+		}
         txtviewSmartphonesResult=(TextView)findViewById(R.id.textView_smartphonesResult);
         
         
@@ -39,7 +47,6 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -77,29 +84,18 @@ public class MainActivity extends Activity {
         ContentValues values;
         try {
              for(SmartPhone smartPhone:listSmartPhone){
-                values=phone2ContentValues(smartPhone);
+                values= Util.phone2ContentValues(smartPhone);
                 Uri uri = getContentResolver().insert(CONTENT_URI,values);
-                Toast.makeText(getBaseContext(), uri.toString(),Toast.LENGTH_LONG).show();
+                Util.message(getBaseContext(), uri.toString());
             }
+            Intent intent = new Intent(this,JsonActivity.class);
+            startActivity(intent);
         }catch(Exception e){
-            Log.d("main", "Exception onclickGrabarContentProvider " + e.getMessage());
+            Log.e("main", "Exception onclickGrabarContentProvider " + e.getMessage());
         }
     }
 
-    private ContentValues phone2ContentValues(SmartPhone beanSmartPhone){
-        ContentValues values = new ContentValues();
-        values.put(Constantes.COL_MANUFACTURER,beanSmartPhone.getManufacturer());
-        values.put(Constantes.COL_BRAND,beanSmartPhone.getBrand());
-        values.put(Constantes.COL_MODEL,beanSmartPhone.getModel());
-        values.put(Constantes.COL_RELEASE,beanSmartPhone.getRelease());
-        values.put(Constantes.COL_OS,beanSmartPhone.getOs());
-        values.put(Constantes.COL_VERSION,beanSmartPhone.getOsVersion());
-        values.put(Constantes.COL_PROCESSOR,beanSmartPhone.getProcessor());
-        values.put(Constantes.COL_MEMORY,beanSmartPhone.getMemory());
-        values.put(Constantes.COL_STORAGE,beanSmartPhone.getStorage());
-        values.put(Constantes.COL_WEIGHT,beanSmartPhone.getWeight());
-        return values;
-    }
+
     
     
 }

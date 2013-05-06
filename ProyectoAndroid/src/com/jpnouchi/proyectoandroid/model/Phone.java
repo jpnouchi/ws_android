@@ -11,6 +11,10 @@ public abstract class Phone {
 	protected String memory;
 	protected String storage;
 	protected String weight;
+    protected String dateCreate;
+    protected String userCreate;
+
+
 	public String getManufacturer() {
 		return manufacturer;
 	}
@@ -71,7 +75,21 @@ public abstract class Phone {
 	public void setWeight(String weight) {
 		this.weight = weight;
 	}
-	
-	
 
+
+    public String getDateCreate() {
+        return dateCreate;
+    }
+
+    public void setDateCreate(String dateCreate) {
+        this.dateCreate = dateCreate;
+    }
+
+    public String getUserCreate() {
+        return userCreate;
+    }
+
+    public void setUserCreate(String userCreate) {
+        this.userCreate = userCreate;
+    }
 }
